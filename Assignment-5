@@ -1,0 +1,155 @@
+                                                      Q.1- Print the Elements of a Linked List
+                                                      
+                                                      
+void printLinkedList(SinglyLinkedListNode* head) {
+    if(!head) return;
+    
+SinglyLinkedListNode* temp = head;
+
+while(temp != NULL){
+    cout<<temp->data<<endl;
+    temp = temp -> next;
+}
+
+
+
+                                                      
+                                                      Q.2 - Insert a Node at the Tail of a Linked List
+                                                      
+                                                      
+
+SinglyLinkedListNode* insertNodeAtTail(SinglyLinkedListNode* head, int data) {
+    
+SinglyLinkedListNode* temp = new SinglyLinkedListNode(data);
+
+
+temp -> data = data;
+temp -> next = NULL;
+
+if(head == NULL){
+    head = temp;
+}
+else{
+    temp -> data = data;
+    SinglyLinkedListNode* p;
+    p = head;
+    while(p->next != NULL){
+        p = p->next;
+    }
+    p -> next = temp;
+}
+
+return head;
+}
+
+
+
+                                                         Q.3 - insert a node at the head of a linked list
+                                                         
+                                                         
+                                                         
+                                                         
+SinglyLinkedListNode* insertNodeAtHead(SinglyLinkedListNode* llist, int data) {
+SinglyLinkedListNode* temp = new SinglyLinkedListNode(data);
+
+temp -> data = data;
+temp -> next = llist;
+llist= temp;
+return llist;
+}
+
+
+
+
+                                                         Q.4 - Insert a node at a specific position in a linked list
+                                                         
+                                                         
+                                                         
+SinglyLinkedListNode* insertNodeAtPosition(SinglyLinkedListNode* llist, int data, int position) {
+ SinglyLinkedListNode* temp = new  SinglyLinkedListNode(data);
+ temp -> data = data;
+ 
+ SinglyLinkedListNode* p = llist;
+ int i;
+ 
+ while(i != position-1){
+     p = p->next;
+     i++;
+ }
+
+ temp -> next = p->next; 
+ p ->next = temp;
+ return llist;
+ 
+}
+
+
+
+
+                                                                     Q.5 - Delete a Node
+                                                                     
+                                                                     
+                                                                     
+SinglyLinkedListNode* deleteNode(SinglyLinkedListNode* llist, int position) {
+    
+    SinglyLinkedListNode*prev,*p;
+    
+    p = llist;
+   int i = 0;
+   if(position == 0){
+       llist = p->next;
+       free(p);
+       return llist;
+   }
+   while(i != position){
+       prev = p;
+       p = p->next;
+       i++;
+   }   
+    prev -> next = p->next;
+    free(p);
+    return llist;
+}
+
+
+
+
+                                                                     Q.6 - Get Node Value
+                                                                     
+                                                                     
+int getNode(SinglyLinkedListNode* head, int positionFromTail) {
+   if(head == nullptr) return -1;
+SinglyLinkedListNode* ptr1 = head;
+SinglyLinkedListNode* ptr2 = head;
+int counter = 0;
+int forward = 0;
+
+while(ptr1->next != NULL){
+    forward++;
+    ptr1 = ptr1->next;
+    if(forward-counter>positionFromTail){
+        ptr2 = ptr2->next;
+        counter++;
+    }
+}
+return ptr2->data;
+
+}
+
+
+
+                                                                            Q.7 - Cycle Detection
+                                                                            
+                                                                            
+                                                                            
+bool has_cycle(SinglyLinkedListNode* head) {
+SinglyLinkedListNode* slow = head;
+SinglyLinkedListNode* fast = head;
+
+while(fast != NULL && fast->next != NULL){
+    slow = slow -> next;
+    fast = fast -> next -> next;
+    if(fast == slow) return true;
+}
+return false;
+}                                                                            
